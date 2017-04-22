@@ -8,19 +8,14 @@ void shell_insert(data_t* datas, int size, int d)
 	for (int i = d; i < size; i++)
 	{
 		tmp = datas[i];
+		int j = i - d;
 		
-		for (int j = i - d; j >= 0; j -= d)
+		for (; tmp < datas[j] && j >= 0; j -= d)
 		{
-			if (tmp < datas[j])
-			{
-				datas[j + d] = datas[j];
-			}
-			else
-			{
-				datas[j + d] = tmp;
-				break;
-			}
+			datas[j + d] = datas[j];
 		}
+		
+		datas[j + d] = tmp;
 	}
 }
 
